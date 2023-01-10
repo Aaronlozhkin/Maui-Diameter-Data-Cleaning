@@ -70,6 +70,8 @@ for k = 1 : length(Files)
         plot(ax1, time, diameter)
         hold(ax1, 'on')
         
+        %% Process two hampel filters to detect outliers.
+        
         [diameter, j, xmedian, ~] = hampel(diameter, 200);
         diameter = smoothOutliers(diameter, j, xmedian, offset, median(diameter));
 
@@ -86,7 +88,10 @@ for k = 1 : length(Files)
         for i = 2 : length(ipt)
                 section_variance = var(diameter_clean(ipt(i-1):ipt(i)));
                 section_mean = mean(diameter_clean(ipt(i-1):ipt(i)));
-
+             
+                %%If the data is out of the realm of physiological significance, or the variance is too high then zero out this section. 
+                %%Different arteries will require different values.
+             
              if (strcmp(artery, 'VA'))
                     if (section_mean > 5 || section_mean < 1.5 || section_variance > 0.25 || ipt(i)-ipt(i-1) < 1000)   
                         diameter_clean(ipt(i-1):ipt(i)) = 0;
@@ -102,6 +107,9 @@ for k = 1 : length(Files)
                         diameter_clean(ipt(i-1):ipt(i)) = hampel(diameter_clean(ipt(i-1):ipt(i)), 200);
                         diameter_clean(ipt(i-1):ipt(i)) = hampel(diameter_clean(ipt(i-1):ipt(i)), 50);
                      end
+                     
+             %%Add more elseif statements to include viable physiological metrics for other arteries
+              
              end
 
         end
