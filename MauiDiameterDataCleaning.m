@@ -35,13 +35,8 @@ lbl.WordWrap = "on";
 
 for k = 1 : length(Files)
        
-    baseFileName = Files(k).name;
-    
-
-    
+        baseFileName = Files(k).name;
         fullFileName = fullfile(Files(k).folder, baseFileName);
-
-
         lbl.Text = baseFileName;
 
         %Split data based by Artery
@@ -80,8 +75,7 @@ for k = 1 : length(Files)
 
         [ipt, ~] = findchangepts(diameter,'MaxNumChanges',numSections,'Statistic','mean'); 
         ipt = transpose(ipt);
-
-        ipt = [1, ipt, length(diameter)]; %#ok<AGROW>
+        ipt = [1, ipt, length(diameter)]; 
 
         diameter_clean = diameter;
 
@@ -108,7 +102,7 @@ for k = 1 : length(Files)
                         diameter_clean(ipt(i-1):ipt(i)) = hampel(diameter_clean(ipt(i-1):ipt(i)), 50);
                      end
                      
-             %%Add more elseif statements to include viable physiological metrics for other arteries
+               %%Add more elseif statements to include viable physiological metrics for other arteries
               
              end
 
@@ -121,15 +115,10 @@ for k = 1 : length(Files)
         diameter_sections = find(diameter_clean ~= 0);
         plot(ax2, time(diameter_sections), diameter_clean(diameter_sections))
 
-
-
         btn = uibutton(fig,'push',...
                    'Position',[2100, 100, 100, 22],...
                    'Text', 'Done',...
                    'ButtonPushedFcn', @(btn,event) saveButtonPushed(k, fig, baseFileName, Files, time, diameter, diameter_clean, diameter_sections));
-               
-        
-
         uiwait(fig);
  
 end
