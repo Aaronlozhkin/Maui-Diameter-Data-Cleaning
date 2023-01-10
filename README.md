@@ -22,4 +22,4 @@ Outputs a list of the names of the edited files chosen to be saved. Saves a .m f
 
 ## Contributing
 
-Please feel free to update and utilize this script, I can post up the relevant GitHub if you would like. The main addition would definitely be the interpolation of outlier's rather than using the mean.
+Please feel free to update and utilize this script. The main addition would definitely be the interpolation of outlier's rather than using the mean.
