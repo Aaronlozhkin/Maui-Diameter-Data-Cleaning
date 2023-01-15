@@ -1,6 +1,6 @@
 # Maui Diameter Data Cleaning
 
-MauiDiameterDataCleaning.m is a signal processing algorithm that takes in the output of Maui and identifies artifacts within the data, replacing them with the median of the entire dataset. Currently, there are specific metrics meant for the ICA and VA arteries, but this can easily be expanded with relevant physiological metrics. 
+MauiDiameterDataCleaning.m is a signal processing algorithm that takes in the output of Hedgehog Medical's Maui software and identifies artifacts within the data, replacing them with the median of the entire dataset. Currently, there are specific metrics meant for the ICA and VA arteries, but this can easily be expanded with relevant physiological metrics. 
 
 ## Usage
 
